@@ -1,0 +1,75 @@
+' This is the VBA code used in MS Excel zu anaylze the eventStream. It is based on regular expressions and can be easily adapted to other programming languages 
+
+'Returns the number of events that match Myevent
+Function countEvent(Myrange As Range, Myevent As String) As Long
+    Dim regEx As New RegExp
+    Dim strPattern As String
+    Dim strInput As String
+    Dim strReplace As String
+    Dim strOutput As String
+    strPattern = "[0-9]+[\#]" & Myevent & "[\;]"
+    
+        strInput = Myrange.Value
+        With regEx
+            .Global = True
+            .MultiLine = False
+            .IgnoreCase = False
+            .Pattern = strPattern
+        End With
+        Set Matches = regEx.Execute(strInput)
+        countEvent = Matches.Count
+   
+    Set regEx = Nothing
+End Function
+
+'Returns the timestamp (ms since 01.01.1970 00:00:00 UTC) of nth occurence of an events
+Function timestamp(Myrange As Range, Myevent As String, Occurance As Integer) As LongLong
+    Dim regEx As New RegExp
+    Dim strPattern As String
+    Dim strInput As String
+    Dim strReplace As String
+    Dim strOutput As String
+    strPattern = "[0-9]+[\#]" & Myevent & "[\;]"
+   
+        strInput = Myrange.Value
+        With regEx
+            .Global = True
+            .MultiLine = False
+            .IgnoreCase = False
+            .Pattern = strPattern
+        End With
+        Set Matches = regEx.Execute(strInput)
+        splitstring = Split(Matches.Item(Occurance - 1).Value, "#")
+        timestamp = CLngLng(splitstring(0))
+    Set regEx = Nothing
+End Function
+
+'count occurences of a specific event sequence
+Function countEventPattern(Myrange As Range, ParamArray MyEvents() As Variant) As Long
+
+    Dim regEx As New RegExp
+    Dim strPattern As String
+    Dim strInput As String
+    Dim strReplace As String
+    Dim strOutput As String
+    Dim i As Integer
+    
+    strPattern = ""
+    
+    For i = LBound(MyEvents) To UBound(MyEvents)
+        strPattern = strPattern & "[0-9]+[\#]" & MyEvents(i) & "[\;]"
+        If i < UBound(MyEvents) Then strPattern = strPattern & ".+"
+    Next
+
+        strInput = Myrange.Value
+        With regEx
+            .Global = True
+            .MultiLine = False
+            .IgnoreCase = False
+            .Pattern = strPattern
+        End With
+        Set Matches = regEx.Execute(strInput)
+        countEventPattern = Matches.Count
+   
+    Set regEx = Nothing
+End Function
