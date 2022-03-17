@@ -3,9 +3,9 @@
 </p>
 
 # QButterfly
-QButterfly is a lightweight approach to embed websites into Qualtrics surveys and observe user behavior. It can be used to track user behavior on single websites or in online experiments (e.g. in controlled usability experiments). 
+QButterfly is a lightweight approach to embed websites into Qualtrics or LimeSurvey surveys and record user clickstreams. It can be used to track user behavior on single websites or in online experiments (e.g. in controlled usability experiments). 
 
-Qualtrics is used to conveniently manage the overall study flow including consent, random assignment of participants to treatments, manipulation checks, etc. The stimulus website is embedded into Qualtrics via an iframe. Currently, Butterfly can track only user clicks on a stimulus website. Clicks are then stored in a Qualtrics question and can be easily analyzed afterwards. It is therefore not required to manually match a users's survey inputs with other behavioral data (e.g., server logs, analytics tools) after the survey.
+Qualtrics or LimeSurvey are used to conveniently manage the overall study flow including consent, random assignment of participants to treatments, manipulation checks, etc. The stimulus website is embedded into the survey via an iframe. Currently, QButterfly can track only user clicks on a stimulus website. Clicks are then stored in a survey question and can be easily analyzed afterwards. It is therefore not required to manually match a users's survey inputs with other behavioral data (e.g., server logs, analytics tools) after the survey.
 
 A demo of QButterfly is available [here.](https://immzhaw.eu.qualtrics.com/jfe/form/SV_887kj9vYpIqnBfU) 
 
@@ -15,7 +15,7 @@ A demo of QButterfly is available [here.](https://immzhaw.eu.qualtrics.com/jfe/f
 
 Start by [importing](https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/import-and-export-surveys/) qbutterfly_template.qsf in Qualtrics. 
 
-Your website https://www.mywebsite.com/index.html will be display as an window within the Qualtrics survey window ("iframe"). Therefore, switch to [survey flow](https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/survey-flow-overview/) and update the following variables:
+Your website https://www.mywebsite.com/index.html will be display as an window within the survey window ("iframe"). Therefore, switch to [survey flow](https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/survey-flow-overview/) and update the following variables:
 - windowURL (url of your website, e.g., https://www.mywebsite.com/index.html)
 - windowBorder (border size of window)
 - windowHeight (height of window)
@@ -24,15 +24,15 @@ Your website https://www.mywebsite.com/index.html will be display as an window w
 
 ### Embed QButterfly in website
 
-First, deploy your webpage and embed butterfly. For an example see butterfly_example.html in the example folder.
+First, deploy your webpage and embed QButterfly. For an example see qbutterfly_example.html in the example folder.
 
-Add JQuery and qbutterfly.js to each html page. Afterwards add an id (e.g., "MyLink") to the objects you want to track. Replace https://abcd.eu.qualtrics.com with the name of your own Qualtrics domain that you are using to run surveys. The following code will react on a click on a hyperlink with the id MyLink. 
+Add JQuery and qbutterfly.js to each html page. Afterwards add an id (e.g., "MyLink") to the objects you want to track. Replace https://abcd.eu.qualtrics.com with the name of your own survey domain that you are using to run surveys. The following code will react on a click on a hyperlink with the id MyLink. 
 
 ```html
 <head>
  <title>demo</title>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-     <script type="text/javascript" src="qbutterfly.js" qualtricsURL="https://abcd.eu.qualtrics.com"></script>    
+     <script type="text/javascript" src="qbutterfly.js" surveyURL="https://abcd.eu.qualtrics.com"></script>    
 </head>
 <body>
     <a id="MyLink" href="https://www.w3schools.com/">Visit W3Schools.com!</a>
