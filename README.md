@@ -7,7 +7,7 @@ QButterfly is a lightweight approach to embed websites into Qualtrics or LimeSur
 
 Qualtrics or LimeSurvey are used to conveniently manage the overall study flow including consent, random assignment of participants to treatments, manipulation checks, etc. The stimulus website is embedded into the survey via an iframe. Currently, QButterfly can track only user clicks on a stimulus website. Clicks are then stored in a survey question and can be easily analyzed afterwards. It is therefore not required to manually match a users's survey inputs with other behavioral data (e.g., server logs, analytics tools) after the survey.
 
-A demo of QButterfly is available [here.](https://immzhaw.eu.qualtrics.com/jfe/form/SV_887kj9vYpIqnBfU). It shows a Qualtrics survey. A short Limesurvey demo is here: [here.](https://qbutterfly.limesurvey.net/499761) 
+A demo of QButterfly is available [here](https://immzhaw.eu.qualtrics.com/jfe/form/SV_887kj9vYpIqnBfU). It shows a Qualtrics survey. A short Limesurvey demo is here: [here](https://qbutterfly.limesurvey.net/499761). 
 
 ## Quick start
 
