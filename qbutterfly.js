@@ -25,7 +25,7 @@ function disableBack() {
         id:		msg,
         currentTime: 	Date.now(),
       },
-      qualtricsURL); 
+      surveyURL); 
     log("Document Ready Msg: " + msg); 
     
     window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
@@ -41,7 +41,7 @@ $(window).on("load",function() {
       id:		msg,
       currentTime: 	Date.now(),
     },
-    qualtricsURL); 
+    surveyURL); 
   log("Window OnLoad Msg: " + msg); 
   disableBack();
 }) 
