@@ -7,11 +7,11 @@ QButterfly is a lightweight approach to embed websites into Qualtrics or LimeSur
 
 Qualtrics or LimeSurvey are used to conveniently manage the overall study flow including consent, random assignment of participants to treatments, manipulation checks, etc. The stimulus website is embedded into the survey via an iframe. Currently, QButterfly can track only user clicks on a stimulus website. Clicks are then stored in a survey question and can be easily analyzed afterwards. It is therefore not required to manually match a users's survey inputs with other behavioral data (e.g., server logs, analytics tools) after the survey.
 
-A demo of QButterfly is available [here.](https://immzhaw.eu.qualtrics.com/jfe/form/SV_887kj9vYpIqnBfU) 
+A demo of QButterfly is available [here.](https://immzhaw.eu.qualtrics.com/jfe/form/SV_887kj9vYpIqnBfU). It shows a Qualtrics survey. A short Limesurvey demo is here: [here.](https://qbutterfly.limesurvey.net/499761) 
 
 ## Quick start
 
-### Import qbutterfly_template.qsf
+### Qualtrics: Import qbutterfly_template.qsf 
 
 Start by [importing](https://www.qualtrics.com/support/survey-platform/survey-module/survey-tools/import-and-export-surveys/) qbutterfly_template.qsf in Qualtrics. 
 
@@ -22,9 +22,20 @@ Your website https://www.mywebsite.com/index.html will be display as an window w
 - windowWidth (width of window)
 - windowScroll (scrollbars yes or no)
 
+
+### LimeSurvey: Import qbutterfly_template.lss
+
+Start by importing qbutterfly_template.lss in LimeSurvey. Afterwards go to the question named "showiFrame" and switch to source code view. You can set the same parameters as described in the Qualtrics section but have to do it directly in the JavaScript code. The click stream data is recorded in the equation question named "eventStreamHidden". In the JavaScript of the showiFrame question you need to  replace the followining line of code with the SGU (Survey-ID, Group-ID, Question-ID) identifier 499761X1X3 (Survey-ID 499761, Group-ID 1, Question-ID 1) ...
+```javascript
+$("#answer499761X1X3").val(eventStream);
+```
+... with the SGU identifier of the eventStreamHidden question in your survey (e.g., Survey-ID 1, Group-ID 1, Question-ID 3)
+```javascript
+$("#answer1X1X3").val(eventStream);
+```
 ### Embed QButterfly in website
 
-First, deploy your webpage and embed QButterfly. For an example see qbutterfly_example.html in the example folder.
+First, deploy your webpage and embed QButterfly. For an example see control.html in demo respository QButterfly/qbutterfly.github.io.
 
 Add JQuery and qbutterfly.js to each html page. Afterwards add an id (e.g., "MyLink") to the objects you want to track. Replace https://abcd.eu.qualtrics.com with the name of your own survey domain that you are using to run surveys. The following code will react on a click on a hyperlink with the id MyLink. 
 
@@ -48,9 +59,9 @@ If you want to assure that the user is only able to see the webpage when it is f
 ```
 QButterfly will then switch the page to visible once the window.onload event is fired, i.e. all css, images etc. are loaded.
 
-### Re-enable the Qualtrics next button after website presentation
+### Re-enable the survey next button after website presentation
 
-When your website is presented via Qualtrics the next button of your survey is hidden by default. If you want to always display the next button, remove the following line of code from the JavaScript of the "Website" question in Qualtrics.
+When your website is presented via the survey the next button of your survey is hidden by default. If you want to always display the next button, remove the following line of code from the JavaScript of the "Website" question in Qualtrics or the "showiFrame" question in LimeSurvey.
 
 ```javascript
 this.hideNextButton();
@@ -60,8 +71,13 @@ To display the next button after it was hidden you have two options.
 
 By default the next button is displayed automatically after 30 seconds. Remove the following line if you want to manually active the next button or change the value 30000ms by any other meaningful duration.
 
+Qualtrics:
 ```javascript
 setTimeout(function() { jQuery("#NextButton").show(); },30000);
+```
+LimeSurvey:
+```javascript
+setTimeout(function() { jQuery("#ls-button-submit").show(); },30000);
 ```
 
 You can also activate the next button via a specific user click on your website.
@@ -76,7 +92,7 @@ Simply add the class "enableNextButton" behind "reactOnClick" in your html code.
 
 Make sure to test your study with multiple browser types / screen resolutions before you run your study. Carefully check the recorded click trails in a soft launch of your study (e.g. 5% of your intended sample). 
 
-QButterfly writes the data to the embedded variable named "collectedData". In Qualtrics you can retrieve it any time via ${e://Field/collectedData}. 
+QButterfly writes the data to the embedded variable named "collectedData". In Qualtrics you can retrieve it any time via ${e://Field/collectedData}. In LimeSurvey it is written into the question eventStreamHidden.
 
 This is an example of the format of the recorded data:
 
