@@ -4,8 +4,9 @@
      $('#ls-button-submit').hide();
    });
   
+  setTimeout(function() { jQuery("#ls-button-submit").show(); },30000);
   
-  // The following parameters need to be replaced by your actual parameters
+// The following parameters need to be replaced by your actual parameters
   var windowURL = "https://qbutterfly.github.io/control_lime.html";
   var windowBorder = 0;
   var windowHeight = 400;
