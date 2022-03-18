@@ -6,7 +6,7 @@ function log(message) {
   }
 }
 
-var qualtricsURL;
+var surveyURL;
 var url;
 var filename;
 
@@ -15,7 +15,7 @@ function disableBack() {
 }
 
 	$(document).ready(function() {
-    qualtricsURL = $('script[qualtricsURL][qualtricsURL!=null]'). attr('qualtricsURL');
+    surveyURL = $('script[surveyURL][surveyURL!=null]'). attr('surveyURL');
     url = window.location.pathname;
     filename = url.substring(url.lastIndexOf('/')+1);
     var msg = "ready_" + filename;
@@ -67,6 +67,6 @@ $(document).click(function(e) {
       currentTime: 	Date.now(),
       enableNextButton: enableNextButton,
     }, 
-    qualtricsURL);
+    surveyURL);
   log("Message sent: " + eventText);   
 });
