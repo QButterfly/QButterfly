@@ -9,6 +9,8 @@ Qualtrics or LimeSurvey are used to conveniently manage the overall study flow i
 
 A demo of QButterfly is available [here](https://immzhaw.eu.qualtrics.com/jfe/form/SV_887kj9vYpIqnBfU). It shows a Qualtrics survey. A short LimeSurvey demo is [here](https://qbutterfly.limesurvey.net/499761). 
 
+[![Demo and Installation](https://img.youtube.com/vi/xovYdHoPQTo/maxresdefault.jpg)](https://www.youtube.com/watch?v=xovYdHoPQTo)
+
 ## Quick start
 
 ### Qualtrics: Import qbutterfly_template.qsf 
